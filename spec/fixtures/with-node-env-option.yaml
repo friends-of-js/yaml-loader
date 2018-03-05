@@ -1,0 +1,10 @@
+default: &default
+  first: 1
+  second: 2
+
+production:
+  <<: *default
+
+test:
+  <<: *default
+  test: true
