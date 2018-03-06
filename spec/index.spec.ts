@@ -105,7 +105,6 @@ describe('Loader', () => {
   context('with transformValues option', () => {
     context('object in yaml file', () => {
       it('should change values by passed function', async () => {
-        console.log(process.env.NODE_ENV)
         await createTest('with-transform-values-recursive-option', {
           transformValues: (value: any) => typeof value === 'string' ? `${value}-value` : value
         })
@@ -136,6 +135,15 @@ describe('Loader', () => {
       const stats = await webpack(`./fixtures/invalid-yaml-file.yaml`, config)
       const { errors } = stats.toJson()
       expect(errors[0]).to.match(/YAMLException: end of the stream or a document separator is expected/)
+    })
+  })
+
+  describe('context tranform keys and values', () => {
+    it('should change keys and values according to passed functions', async () => {
+      await createTest('transform-keys-and-values', {
+        transformKeysRecursive: (key: string) => `${key}-key`,
+        transformValues: value => typeof value === 'number' ? value * 10 : value
+      })
     })
   })
 })

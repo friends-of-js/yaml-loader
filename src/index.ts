@@ -18,7 +18,7 @@ function transformKeysRecursive (entity: object, callback: (key: string) => stri
 
   const result: { [index: string]: any } = {}
   Object.entries(entity).forEach(([key, value]) => {
-    result[callback(key)] = isPlainObject(value) ? transformKeysRecursive(value, callback) : value
+    result[callback(key)] = transformKeysRecursive(value, callback)
   })
 
   return result
@@ -58,18 +58,17 @@ export default function yamlLoader (this: loader.LoaderContext, source: string):
       throw new Error(`You are using NODE_ENV for loading yaml files, but no property "${process.env.NODE_ENV}" found in yaml file!`)
     }
 
-    const result: object = useNodeEnv ? yamlFileContent[process.env.NODE_ENV as string] : yamlFileContent
-    let normalized: any = result
+    let result: object = useNodeEnv ? yamlFileContent[process.env.NODE_ENV as string] : yamlFileContent
 
     if (transformKeys) {
-      normalized = transformKeysRecursive(result, transformKeys)
+      result = transformKeysRecursive(result, transformKeys)
     }
 
     if (transformValues) {
-      normalized = shallowTransformValues(result, transformValues)
+      result = shallowTransformValues(result, transformValues)
     }
 
-    return `exports.default = ${JSON.stringify(normalized)};`
+    return `exports.default = ${JSON.stringify(result)};`
   } catch (exception) {
     this.emitError(exception)
     return `exports.default = ${JSON.stringify({
