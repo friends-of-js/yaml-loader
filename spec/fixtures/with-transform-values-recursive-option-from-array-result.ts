@@ -1,1 +1,1 @@
-export const result: string = 'exports.default = ["first-value","second-value"];'
+export const result: string = 'module.exports = ["first-value","second-value"];'

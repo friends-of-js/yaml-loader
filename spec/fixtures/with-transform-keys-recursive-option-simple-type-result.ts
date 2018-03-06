@@ -1,1 +1,1 @@
-export const result: string = 'exports.default = "this is string";'
+export const result: string = 'module.exports = "this is string";'

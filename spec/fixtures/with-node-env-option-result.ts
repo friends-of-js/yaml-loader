@@ -1,1 +1,1 @@
-export const result: string = 'exports.default = {"first":1,"second":2,"test":true};'
+export const result: string = 'module.exports = {"first":1,"second":2,"test":true};'

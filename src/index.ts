@@ -68,10 +68,10 @@ export default function yamlLoader (this: loader.LoaderContext, source: string):
       result = shallowTransformValues(result, transformValues)
     }
 
-    return `exports.default = ${JSON.stringify(result)};`
+    return `module.exports = ${JSON.stringify(result)};`
   } catch (exception) {
     this.emitError(exception)
-    return `exports.default = ${JSON.stringify({
+    return `module.exports = ${JSON.stringify({
       exception,
       filename,
       error: exception.message

@@ -77,7 +77,7 @@ module.exports = {
 
 So if your NODE_ENV = 'test' - yaml loader would create bundle with this content: 
 ```javascript
-exports.default = { "API_KEY":654321 };
+module.exports = { "API_KEY":654321 };
 ```
 
 ### `transformKeysRecursive`
@@ -124,7 +124,7 @@ module.exports = {
 ```
 It would produce this object:
 ```javascript
-exports.default = {
+module.exports = {
   firstKey: 1,
   secondKey: 2,
   thirdKey: [
@@ -173,10 +173,10 @@ module.exports = {
 ```
 It would produce this object for example1.yaml:
 ```javascript
-exports.default = { first_key: 11, second_key: 12 }
+module.exports = { first_key: 11, second_key: 12 }
 ```
 
 And this content for example2.yaml:
 ```javascript
-exports.default = 'this is string content of file'
+module.exports = 'this is string content of file'
 ```
