@@ -1,5 +1,10 @@
 # Yaml loader for webpack
 
+[![Build Status](https://travis-ci.org/friends-of-js/yaml-loader.svg?branch=master)](https://travis-ci.org/friends-of-js/yaml-loader)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/e87008b419028b447748/test_coverage)](https://codeclimate.com/github/friends-of-js/yaml-loader/test_coverage)
+[![Maintainability](https://api.codeclimate.com/v1/badges/e87008b419028b447748/maintainability)](https://codeclimate.com/github/friends-of-js/yaml-loader/maintainability)
+[![license](https://img.shields.io/github/license/friends-of-js/yaml-loader.svg)](LICENSE)
+
 > Webpack loader for yaml format with support of NODE_ENV and ability to change keys and values of yaml objects in compile time
 
 ## Install
