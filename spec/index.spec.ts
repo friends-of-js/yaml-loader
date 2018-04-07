@@ -1,7 +1,7 @@
-import { expect } from 'chai'
+import { YamlLoaderOptions } from '@fiends-of-js/yaml-loader'
 import * as webpack from '@webpack-contrib/test-utils'
+import { expect } from 'chai'
 import * as path from 'path'
-import { YamlLoaderOptions } from 'yaml-loader'
 import * as sinon from 'sinon'
 
 function createConfig (options: Partial<YamlLoaderOptions> = {}) {
@@ -11,8 +11,8 @@ function createConfig (options: Partial<YamlLoaderOptions> = {}) {
       {
         test: /\.ya?ml$/,
         use: {
-          loader: path.resolve(__dirname, '../lib/module/commonjs/index.js'),
-          options: options
+          loader: path.resolve(__dirname, '../src/index.ts'),
+          options
         }
       }
     ]
@@ -52,7 +52,7 @@ describe('Loader', () => {
         })
         const config = createConfig({ useNodeEnv: true })
 
-        const stats = await webpack(`./fixtures/with-node-env-option.yaml`, config)
+        const stats = await webpack('./fixtures/with-node-env-option.yaml', config)
         const { errors } = stats.toJson()
         sandbox.restore()
         expect(errors[0]).to.match(/You are using NODE_ENV for loading yaml files, but your NODE_ENV is undefined!/)
@@ -68,7 +68,7 @@ describe('Loader', () => {
         })
         const config = createConfig({ useNodeEnv: true })
 
-        const stats = await webpack(`./fixtures/with-node-env-option.yaml`, config)
+        const stats = await webpack('./fixtures/with-node-env-option.yaml', config)
         const { errors } = stats.toJson()
         sandbox.restore()
         expect(errors[0]).to.match(/You are using NODE_ENV for loading yaml files, but no property "invalid" found in yaml file!/)
@@ -79,24 +79,27 @@ describe('Loader', () => {
   context('with transformKeysRecursive option', () => {
     context('object in yaml file', () => {
       it('should change keys by passed function', async () => {
-        await createTest('with-transform-keys-recursive-option',
-          { transformKeysRecursive: (key: string) => `${key}-key` }
+        await createTest(
+          'with-transform-keys-recursive-option',
+          { transformKeysRecursive: key => `${key}-key` }
         )
       })
     })
 
     context('array in yaml file', () => {
       it('should change keys of objects by passed function', async () => {
-        await createTest('with-transform-keys-recursive-option-from-array',
-          { transformKeysRecursive: (key: string) => `${key}-key` }
+        await createTest(
+          'with-transform-keys-recursive-option-from-array',
+          { transformKeysRecursive: key => `${key}-key` }
         )
       })
     })
 
     context('simple type in yaml file', () => {
       it('should change keys of objects by passed function', async () => {
-        await createTest('with-transform-keys-recursive-option-simple-type',
-          { transformKeysRecursive: (key: string) => `${key}-key` }
+        await createTest(
+          'with-transform-keys-recursive-option-simple-type',
+          { transformKeysRecursive: key => `${key}-key` }
         )
       })
     })
@@ -106,7 +109,7 @@ describe('Loader', () => {
     context('object in yaml file', () => {
       it('should change values by passed function', async () => {
         await createTest('with-transform-values-recursive-option', {
-          transformValues: (value: any) => typeof value === 'string' ? `${value}-value` : value
+          transformValues: value => typeof value === 'string' ? `${value}-value` : value
         })
       })
     })
@@ -114,7 +117,7 @@ describe('Loader', () => {
     context('array in yaml file', async () => {
       it('should change values by passed function', async () => {
         await createTest('with-transform-values-recursive-option-from-array', {
-          transformValues: (value: any) => typeof value === 'string' ? `${value}-value` : value
+          transformValues: value => typeof value === 'string' ? `${value}-value` : value
         })
       })
     })
@@ -122,7 +125,7 @@ describe('Loader', () => {
     context('simple type in yaml file', async () => {
       it('should change values by passed function', async () => {
         await createTest('with-transform-values-recursive-option-simple-type', {
-          transformValues: (value: any) => typeof value === 'string' ? `${value} string` : value
+          transformValues: value => typeof value === 'string' ? `${value} string` : value
         })
       })
     })
@@ -132,7 +135,7 @@ describe('Loader', () => {
     it('should emit error', async () => {
       const config = createConfig()
 
-      const stats = await webpack(`./fixtures/invalid-yaml-file.yaml`, config)
+      const stats = await webpack('./fixtures/invalid-yaml-file.yaml', config)
       const { errors } = stats.toJson()
       expect(errors[0]).to.match(/YAMLException: end of the stream or a document separator is expected/)
     })
@@ -141,7 +144,7 @@ describe('Loader', () => {
   describe('context tranform keys and values', () => {
     it('should change keys and values according to passed functions', async () => {
       await createTest('transform-keys-and-values', {
-        transformKeysRecursive: (key: string) => `${key}-key`,
+        transformKeysRecursive: key => `${key}-key`,
         transformValues: value => typeof value === 'number' ? value * 10 : value
       })
     })
