@@ -1,3 +1,6 @@
 {
-  "extends": "tslint-config-standard"
+  "extends": "@friends-of-js/tslint-configs/strict",
+  "rules": {
+    "missing-jsdoc": false
+  }
 }
