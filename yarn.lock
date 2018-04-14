@@ -151,8 +151,8 @@
     tslint-sonarts "^1.6.0"
 
 "@friends-of-js/typescript-configs@^1.0.3":
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/@friends-of-js/typescript-configs/-/typescript-configs-1.0.3.tgz#e4c801de78eefcf58a526211fcb11561bf67cf0a"
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/@friends-of-js/typescript-configs/-/typescript-configs-1.0.5.tgz#6882e01e8b5e1d4bb289a434985f3662745ebdc8"
 
 "@marionebl/sander@^0.6.0":
   version "0.6.1"
