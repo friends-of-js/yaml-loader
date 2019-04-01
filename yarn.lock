@@ -206,9 +206,9 @@
   version "9.6.5"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-9.6.5.tgz#ee700810fdf49ac1c399fc5980b7559b3e5a381d"
 
-"@types/sinon@^4.3.1":
-  version "4.3.1"
-  resolved "https://registry.yarnpkg.com/@types/sinon/-/sinon-4.3.1.tgz#32458f9b166cd44c23844eee4937814276f35199"
+"@types/sinon@^7.0.11":
+  version "7.0.11"
+  resolved "https://registry.yarnpkg.com/@types/sinon/-/sinon-7.0.11.tgz#6f28f005a36e779b7db0f1359b9fb9eef72aae88"
 
 "@types/tapable@*":
   version "1.0.1"
