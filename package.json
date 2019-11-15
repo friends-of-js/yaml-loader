@@ -97,7 +97,7 @@
     "opn-cli": "^3.1.0",
     "release": "^3.1.7",
     "sinon": "^4.5.0",
-    "ts-node": "^5.0.1",
+    "ts-node": "^8.5.2",
     "tsconfig-paths": "^3.2.0",
     "tslint": "^5.9.1",
     "typescript": "^2.8.1",
