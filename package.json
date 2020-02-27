@@ -90,7 +90,7 @@
     "cz-conventional-changelog": "^2.1.0",
     "gh-pages": "^1.1.0",
     "husky": "^1.0.0-rc.1",
-    "jsdom": "^11.7.0",
+    "jsdom": "^16.2.0",
     "loader-utils": "^1.1.0",
     "mocha": "^5.1.0",
     "nyc": "^11.6.0",
